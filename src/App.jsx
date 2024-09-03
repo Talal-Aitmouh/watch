@@ -60,7 +60,7 @@ const watches = [
 ];
 
 const WatchDetails = ({ name, description }) => (
-    <motion.div 
+    <motion.div
         className="flex-1 flex flex-col justify-center text-left px-8 order-3 sm:order-1"
         initial={{ opacity: 0, x: -100 }}
         animate={{ opacity: 1, x: 0 }}
@@ -102,19 +102,22 @@ const App = () => {
     return (
         <div className="min-h-screen bg-[#d1c9c1] flex flex-col items-center justify-center">
             <header className="w-full max-w-screen-xl mx-auto flex flex-col sm:flex-row justify-between items-center pt-8 px-8 pb-0">
-                <div className="text-2xl font-bold mb-4 sm:mb-0">MVMT™</div>
-                <button onClick={toggleNav} className="sm:hidden">
-                    <FontAwesomeIcon icon={isNavOpen ? faTimes : faBars} size="lg" />
-                </button>
-                <nav className={`flex-col sm:flex-row sm:flex space-x-4 sm:space-x-14 text-base ${isNavOpen ? 'flex' : 'hidden'}`}>
-                    <a href="#" className="hover:underline">Men</a>
-                    <a href="#" className="hover:underline">Women</a>
-                    <a href="#" className="hover:underline">Brand</a>
-                </nav>
-            </header>
+    <div className="flex w-full justify-between items-center mb-4 sm:mb-0">
+        <div className="text-2xl font-bold">MVMT™</div>
+        <button onClick={toggleNav} className="sm:hidden">
+            <FontAwesomeIcon icon={isNavOpen ? faTimes : faBars} size="lg" />
+        </button>
+    </div>
+    <nav className={`flex-col sm:flex-row sm:flex space-x-4 sm:space-x-14 text-base ${isNavOpen ? 'flex' : 'hidden'}`}>
+        <a href="#" className="hover:underline">Men</a>
+        <a href="#" className="hover:underline">Women</a>
+        <a href="#" className="hover:underline">Brand</a>
+    </nav>
+</header>
 
- <main className="flex-1 w-full max-w-screen-xl mx-auto flex flex-col sm:flex-row">
-                <motion.div 
+
+            <main className="flex-1 w-full max-w-screen-xl mx-auto flex flex-col sm:flex-row">
+                <motion.div
                     className="flex-1 flex justify-center items-center space-x-4 sm:flex-2 sm:space-x-8 mb-8 sm:mb-0 order-1 sm:order-2"
                     initial={{ opacity: 0, scale: 0.8 }}
                     animate={{ opacity: 1, scale: 1 }}
@@ -124,9 +127,9 @@ const App = () => {
                     <button onClick={handlePrevImage} className="bg-[#999087] px-2 sm:px-4 py-2 rounded-full shadow-md hover:bg-[#333333]">
                         <FontAwesomeIcon icon={faChevronLeft} size="xs" style={{ color: "#ffffff" }} />
                     </button>
-                    <motion.img 
-                        src={currentWatch.image} 
-                        alt={currentWatch.name} 
+                    <motion.img
+                        src={currentWatch.image}
+                        alt={currentWatch.name}
                         className="h-[250px] sm:h-[390px]"
                         key={currentWatch.image}
                         initial={{ opacity: 0, x: -100 }}
@@ -150,9 +153,9 @@ const App = () => {
                     </div>
                 </div>
 
-                <WatchDetails 
-                    name={currentWatch.name} 
-                    description={currentWatch.description} 
+                <WatchDetails
+                    name={currentWatch.name}
+                    description={currentWatch.description}
                 />
             </main>
             <footer className="w-full max-w-screen-xl mx-auto p-6 bg-[#333333] text-white flex flex-col sm:flex-row justify-between space-y-4 sm:space-y-0">
