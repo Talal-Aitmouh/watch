@@ -1,51 +1,58 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-
-
+import watch1 from '../public/hel.png';
+import watch2 from '../public/watch1.png';
+import watch3 from '../public/watch2.png';
+import watch4 from '../public/watch4.png';
+import watch5 from '../public/mvmt.png';
+import watch6 from '../public/watch.png';
+import ci from '../public/ci.jpeg';
+import ji from '../public/ji.jpg';
+import wa from '../public/wa.jpg';
+import ri from '../public/ri.jpg';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronRight, faChevronLeft } from '@fortawesome/free-solid-svg-icons';
-import { faBars, faTimes } from '@fortawesome/free-solid-svg-icons';
+import { faChevronRight, faChevronLeft, faBars, faTimes } from '@fortawesome/free-solid-svg-icons';
 import Loader from './loader';
 
 const watches = [
     {
         name: "Orion",
-        image: "/hel.png",
+        image: watch1,
         size: "38 mm",
         thickness: "10 mm",
         description: "Rose gold second hand titanium and rose gold double plated stainless steel",
     },
     {
         name: "Helios",
-        image: "/watch1.png",
+        image: watch2,
         size: "40 mm",
         thickness: "8 mm",
         description: "Stainless steel with a sunburst dial and sapphire crystal",
     },
     {
         name: "Luna",
-        image: "/watch2.png",
+        image: watch3,
         size: "36 mm",
         thickness: "9 mm",
         description: "Mother of pearl dial with diamond accents and crystal",
     },
     {
         name: "Chronos",
-        image: "/watch4.png",
+        image: watch4,
         size: "42 mm",
         thickness: "11 mm",
         description: "Multi-function chronograph with a tachymeter scale",
     },
     {
         name: "Aurora",
-        image: "/mvmt.png",
+        image: watch5,
         size: "37 mm",
         thickness: "7 mm",
         description: "Sleek and minimalist design with a mesh bracelet",
     },
     {
         name: "Titan",
-        image: "/watch.png",
+        image: watch6,
         size: "44 mm",
         thickness: "12 mm",
         description: "Rugged and durable with a titanium case black background",
@@ -76,21 +83,16 @@ const WatchDetails = ({ name, description }) => (
 
 const App = () => {
     const [loading, setLoading] = useState(true);
+    const [currentImageIndex, setCurrentImageIndex] = useState(0);
+    const [isNavOpen, setIsNavOpen] = useState(false);
 
     useEffect(() => {
-        // Simulate a loading time (e.g., 2 seconds)
         const timer = setTimeout(() => {
             setLoading(false);
         }, 2000);
 
         return () => clearTimeout(timer);
     }, []);
-
-    if (loading) {
-        return <Loader />;
-    }
-    
-    const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
     const handleNextImage = () => {
         setCurrentImageIndex((prevIndex) => (prevIndex + 1) % watches.length);
@@ -100,29 +102,31 @@ const App = () => {
         setCurrentImageIndex((prevIndex) => (prevIndex - 1 + watches.length) % watches.length);
     };
 
-    const [isNavOpen, setIsNavOpen] = useState(false);
     const toggleNav = () => {
         setIsNavOpen(!isNavOpen);
     };
 
     const currentWatch = watches[currentImageIndex];
 
+    if (loading) {
+        return <Loader />;
+    }
+
     return (
         <div className="min-h-screen bg-[#d1c9c1] flex flex-col items-center justify-center">
             <header className="w-full max-w-screen-xl mx-auto flex flex-col sm:flex-row justify-between items-center pt-8 px-8 pb-0">
-    <div className="flex w-full justify-between items-center mb-4 sm:mb-0">
-        <div className="text-2xl font-bold">MVMT™</div>
-        <button onClick={toggleNav} className="sm:hidden">
-            <FontAwesomeIcon icon={isNavOpen ? faTimes : faBars} size="lg" />
-        </button>
-    </div>
-    <nav className={`flex-col sm:flex-row sm:flex space-x-4 sm:space-x-14 text-base ${isNavOpen ? 'flex' : 'hidden'}`}>
-        <a href="#" className="hover:underline">Men</a>
-        <a href="#" className="hover:underline">Women</a>
-        <a href="#" className="hover:underline">Brand</a>
-    </nav>
-</header>
-
+                <div className="flex w-full justify-between items-center mb-4 sm:mb-0">
+                    <div className="text-2xl font-bold">MVMT™</div>
+                    <button onClick={toggleNav} className="sm:hidden">
+                        <FontAwesomeIcon icon={isNavOpen ? faTimes : faBars} size="lg" />
+                    </button>
+                </div>
+                <nav className={`flex-col sm:flex-row sm:flex space-x-4 sm:space-x-14 text-base ${isNavOpen ? 'flex' : 'hidden'}`}>
+                    <a href="#" className="hover:underline">Men</a>
+                    <a href="#" className="hover:underline">Women</a>
+                    <a href="#" className="hover:underline">Brand</a>
+                </nav>
+            </header>
 
             <main className="flex-1 w-full max-w-screen-xl mx-auto flex flex-col sm:flex-row">
                 <motion.div
@@ -168,31 +172,31 @@ const App = () => {
             </main>
             <footer className="w-full max-w-screen-xl mx-auto p-6 bg-[#333333] text-white flex flex-col sm:flex-row justify-between space-y-4 sm:space-y-0">
                 <div className="flex items-center space-x-4 mx-8">
-                    <img src="/ci.jpeg" alt="Free Gift Box" className="w-14 h-14" />
+                    <img src={ci} alt="Free Gift Box" className="w-14 h-14" />
                     <div>
                         <div className="font-bold text-[14px]">Free gift box</div>
                         <div className="text-xs">Japanese quartz movement in hand-stitched leather</div>
                     </div>
                 </div>
                 <div className="flex items-center space-x-4 mx-8">
-                    <img src="/ji.jpg" alt="Bracelet" className="w-14 h-14" />
+                    <img src={ji} alt="Bracelet" className="w-14 h-14" />
                     <div>
                         <div className="font-bold text-[14px]">Bracelet</div>
                         <div className="text-xs">Add a matching rose gold charm bracelet</div>
                     </div>
                 </div>
                 <div className="flex items-center space-x-4 mx-8">
-                    <img src="/wa.jpg" alt="Movement" className="w-14 h-14" />
+                    <img src={wa} alt="Movement" className="w-14 h-14" />
                     <div>
                         <div className="font-bold text-[14px]">Movement</div>
-                        <div className="text-xs">Japanese quartz movement in hand-stitched leather</div>
+                        <div className="text-xs">Precision and quality guarantee</div>
                     </div>
                 </div>
                 <div className="flex items-center space-x-4 mx-8">
-                    <img src="/ri.jpg" alt="Movement" className="w-14 h-14" />
+                    <img src={ri} alt="Water Resistance" className="w-14 h-14" />
                     <div>
-                        <div className="font-bold text-[14px]">Movement</div>
-                        <div className="text-xs">Japanese quartz movement in hand-stitched leather</div>
+                        <div className="font-bold text-[14px]">Water resistance</div>
+                        <div className="text-xs">Up to 5 ATM</div>
                     </div>
                 </div>
             </footer>
