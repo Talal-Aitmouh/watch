@@ -1,58 +1,51 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import watch1 from '../public/hel.png';
-import watch2 from '../public/watch1.png';
-import watch3 from '../public/watch2.png';
-import watch4 from '../public/watch4.png';
-import watch5 from '../public/mvmt.png';
-import watch6 from '../public/watch.png';
-import ci from '../public/ci.jpeg';
-import ji from '../public/ji.jpg';
-import wa from '../public/wa.jpg';
-import ri from '../public/ri.jpg';
+
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronRight, faChevronLeft } from '@fortawesome/free-solid-svg-icons';
 import { faBars, faTimes } from '@fortawesome/free-solid-svg-icons';
+import Loader from './loader';
 
 const watches = [
     {
         name: "Orion",
-        image: watch1,
+        image: "/hel.png",
         size: "38 mm",
         thickness: "10 mm",
         description: "Rose gold second hand titanium and rose gold double plated stainless steel",
     },
     {
         name: "Helios",
-        image: watch2,
+        image: "/watch1.png",
         size: "40 mm",
         thickness: "8 mm",
         description: "Stainless steel with a sunburst dial and sapphire crystal",
     },
     {
         name: "Luna",
-        image: watch3,
+        image: "/watch2.png",
         size: "36 mm",
         thickness: "9 mm",
         description: "Mother of pearl dial with diamond accents and crystal",
     },
     {
         name: "Chronos",
-        image: watch4,
+        image: "/watch4.png",
         size: "42 mm",
         thickness: "11 mm",
         description: "Multi-function chronograph with a tachymeter scale",
     },
     {
         name: "Aurora",
-        image: watch5,
+        image: "/mvmt.png",
         size: "37 mm",
         thickness: "7 mm",
         description: "Sleek and minimalist design with a mesh bracelet",
     },
     {
         name: "Titan",
-        image: watch6,
+        image: "/watch.png",
         size: "44 mm",
         thickness: "12 mm",
         description: "Rugged and durable with a titanium case black background",
@@ -82,6 +75,21 @@ const WatchDetails = ({ name, description }) => (
 );
 
 const App = () => {
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        // Simulate a loading time (e.g., 2 seconds)
+        const timer = setTimeout(() => {
+            setLoading(false);
+        }, 2000);
+
+        return () => clearTimeout(timer);
+    }, []);
+
+    if (loading) {
+        return <Loader />;
+    }
+    
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
     const handleNextImage = () => {
@@ -160,28 +168,28 @@ const App = () => {
             </main>
             <footer className="w-full max-w-screen-xl mx-auto p-6 bg-[#333333] text-white flex flex-col sm:flex-row justify-between space-y-4 sm:space-y-0">
                 <div className="flex items-center space-x-4 mx-8">
-                    <img src={ci} alt="Free Gift Box" className="w-14 h-14" />
+                    <img src="/ci.jpeg" alt="Free Gift Box" className="w-14 h-14" />
                     <div>
                         <div className="font-bold text-[14px]">Free gift box</div>
                         <div className="text-xs">Japanese quartz movement in hand-stitched leather</div>
                     </div>
                 </div>
                 <div className="flex items-center space-x-4 mx-8">
-                    <img src={ji} alt="Bracelet" className="w-14 h-14" />
+                    <img src="/ji.jpg" alt="Bracelet" className="w-14 h-14" />
                     <div>
                         <div className="font-bold text-[14px]">Bracelet</div>
                         <div className="text-xs">Add a matching rose gold charm bracelet</div>
                     </div>
                 </div>
                 <div className="flex items-center space-x-4 mx-8">
-                    <img src={wa} alt="Movement" className="w-14 h-14" />
+                    <img src="/wa.jpg" alt="Movement" className="w-14 h-14" />
                     <div>
                         <div className="font-bold text-[14px]">Movement</div>
                         <div className="text-xs">Japanese quartz movement in hand-stitched leather</div>
                     </div>
                 </div>
                 <div className="flex items-center space-x-4 mx-8">
-                    <img src={ri} alt="Movement" className="w-14 h-14" />
+                    <img src="/ri.jpg" alt="Movement" className="w-14 h-14" />
                     <div>
                         <div className="font-bold text-[14px]">Movement</div>
                         <div className="text-xs">Japanese quartz movement in hand-stitched leather</div>
